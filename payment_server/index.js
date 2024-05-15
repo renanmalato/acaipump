@@ -24,7 +24,7 @@ const createOrder = async (customer, data) => {
 
   const products = Items.map((item) => {
     return {
-      productId: item._id,
+      productId: item.id,
       quantity: item.cartQuantity,
     };
   });
