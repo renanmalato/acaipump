@@ -1,0 +1,27 @@
+/*
+ FeedbackPlist.strings
+ HyphenatePluginDemo
+ 
+ Created by Youssef on 2017/9/19.
+ Copyright © 2017年 yunio. All rights reserved.
+ */
+
+
+"title" = "Help Center";
+"cancel" = "Cancel";
+"prompt" = "Delete Message";
+"enter" = "Yes";
+"banner" = "Access Denied";
+"UnAuthorizedTip" = "SLS does not have access to your photos or videos. To enable access, tap Settings and turn on Photos.";
+"UnAuthorizedCanmer" = "SLS does not have access to your camera. To enable access, tap Settings and turn on Camera.";
+"firstMessage" = "Dear user, welcome to SLS Customer Service Center. How can I help today?";
+"placeholder" = "How can we be of help?";
+"choosePhoto" = "Album";
+"canmerPhoto" = "Camera";
+"tooLong" = "Photo is too long.";
+"tooBig" = "Photo is too large.";
+"deleteMessage" = "Are you sure to delete this message?";
+"hasNewMessage" = "New Message";
+"serviceMessage" = "Message from Customer Service";
+"sendLog" = "Send Log";
+"didSendLog" = "System log sent.";

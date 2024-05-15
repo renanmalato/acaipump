@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="feedback_system_login">正在联系客服，请您稍等</string>
+    <string name="send">发送</string>
+    <string name="setting_feedback">客服</string>
+    <string name="storage_error">存储设备存在异常</string>
+    <string name="setting_feedback_splash">您好，使用时如有问题反馈或建议，可通过文字或照片的方式联系我们。虽然不能实时回复，但我们会尽快为您处理问题，谢谢。</string>
+    <string name="all_photo">所有照片</string>
+    <string name="network_error">您的网络连接已断开</string>
+    <string name="custom_message">【客服消息】:</string>
+    <string name="camera">相机</string>
+    <string name="send_log">发送日志</string>
+    <string name="send_hint">请输入反馈信息</string>
+
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="feedback_system_login">Loading&#8230;</string>
+    <string name="send">Send</string>
+    <string name="setting_feedback">Help Center</string>
+    <string name="storage_error">SD card not detected</string>
+    <string name="setting_feedback_splash">Dear user, welcome to App Customer Service Center. How can I help today?</string>
+    <string name="all_photo">Images</string>
+    <string name="network_error">There\'s an issue with your network connection</string>
+    <string name="custom_message">[Message from Help Center]: </string>
+    <string name="camera">Album</string>
+    <string name="send_log">Send Log</string>
+    <string name="send_hint">How can we be of help?</string>
+</resources>

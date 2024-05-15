@@ -1,0 +1,28 @@
+{
+  "name": "react-native-hyphenate",
+  "version": "1.4.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "rnpm": {
+    "android": {
+      "packageInstance": "new HyphenatePluginPackage()"
+    },
+    "ios": {
+      "sharedLibraries": []
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^16.3.1",
+    "@types/react-native": "^0.52.22",
+    "typescript": "^2.8.1"
+  }
+}
