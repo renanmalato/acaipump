@@ -82,7 +82,7 @@ const ProductDetails = ({ navigation }) => {
               name: item.title,
               id: item._id,
               price: item.price,
-              unitAmount: unitAmount,
+              unit_amount: unitAmount,
               cartQuantity: count,
             },
           ],
