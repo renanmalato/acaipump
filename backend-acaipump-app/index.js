@@ -7,7 +7,7 @@ const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
 const orderRouter = require('./routes/order')
 const cartRouter = require('./routes/cart')
-const port = 3000;
+const port = 3000; 
 
 dotenv.config()
 
