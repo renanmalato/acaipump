@@ -65,8 +65,6 @@ const ProductDetails = ({ navigation }) => {
 
   const createCheckOut = async () => {
     const id = await AsyncStorage.getItem("id");
-
-    const unitAmount = parseInt(item.price * 100);
     
     const response = await fetch(
       "https://acaipump-production.up.railway.app/stripe/create-checkout-session",
@@ -82,7 +80,6 @@ const ProductDetails = ({ navigation }) => {
               name: item.title,
               id: item._id,
               price: item.price,
-              unit_amount: unitAmount,
               cartQuantity: count,
             },
           ],
