@@ -1,8 +1,8 @@
 const router = require('express').Router();
-const ordersController = require('../controllers/ordersController');
-const { verifyToken } = require('../middleware/verifyToken');
-
-router.get('/', verifyToken, ordersController.getUserOrders);
+const orderController = require('../controllers/ordersController');
 
 
-module.exports = router;
+router.get("/", orderController.getOrders);
+router.get("/:id", orderController.getUserOrders);
+
+module.exports = router

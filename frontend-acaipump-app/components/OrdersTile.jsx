@@ -27,7 +27,10 @@ const OrdersTile = ({item}) => {
             style={{paddingBottom: SIZES.large, paddingLeft: SIZES.large}}
             onPress={() => {}}
         >
-            <View></View>
+            <View>
+                <Text>{item.payment_status}
+                </Text>
+                </View>
 
         </TouchableOpacity>
 
