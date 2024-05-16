@@ -19,7 +19,7 @@ module.exports = {
           const userOrders = await Orders.find({ userId })
                         .populate({
                 path: 'productId',
-                select: "-description - product_location -product_calories -product_protein -product_carbs -product_addedsugar -product_vitamins"
+                select: "-description -product_location -product_calories -product_protein -product_carbs -product_addedsugar -product_vitamins"
             })
             .exec();
       
