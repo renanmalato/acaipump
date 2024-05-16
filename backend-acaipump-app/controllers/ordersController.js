@@ -1,56 +1,20 @@
 const Orders = require("../models/Orders");
-
+const Product = require("../models/Product");
 
 module.exports = {
-    getOrders: async (req, res) => {
-        const userId =  req.user.id;
-        
-        const allOrder = await Orders.find({ userId })
-
-        res.status(200).json(allOrder)
-
-    
-    },
-
-     getUserOrders: async (req, res) => {
+    getOrdersWithProducts: async (req, res) => {
         const userId = req.user.id;
       
         try {
-          const userOrders = await Orders.find({ userId })
-                        .populate({
-                path: 'productId',
-                select: "-description -product_location"
-            })
-            .exec();
-      
-          res.status(200).json(userOrders);
+            const userOrders = await Orders.find({ userId });
+            const populatedOrders = await Promise.all(userOrders.map(async order => {
+                const product = await Product.findById(order.productId);
+                return { ...order._doc, product };
+            }));
+          
+            res.status(200).json(populatedOrders);
         } catch (error) {
-          res.status(500).json({ message: "Failed to get user orders" });
+            res.status(500).json({ message: "Failed to get user orders with products" });
         }
-      }
+    }
 }
-
-// const Orders = require ('../models/Orders');
-
-// module.exports = {
-
-//     getUserOrders: async ( req, res ) => {
-//         const userId = req.user.id;
-
-//         try {
-//             const userOrders = await Orders.find({userId})
-//             .populate({
-//                 path: 'productId',
-//                 select: "-description - product_location -product_calories -product_protein -product_carbs -product_addedsugar -product_vitamins"
-//             })
-//             .exec();
-
-//             res.status(200).json(userOrders);
-            
-//         } catch (error) {
-//             res.status(500).json(error);
-
-//         }
-//     }
-
-// }

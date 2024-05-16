@@ -51,7 +51,20 @@ console.log(id)
       console.log("Error logging out the user:", error)
 
     }
-  }
+  };
+
+
+  const cacheClear = async () => {
+    const id = await AsyncStorage.getItem('id')
+    const userId = `favorites${JSON.parse(id)}`;
+    try {
+      await AsyncStorage.removeItem(userId)
+      navigation.replace('Bottom Navigation')
+    } catch (error) {
+      console.log("Error logging out the user:", error)
+
+    }
+  };
   
 
   const logout = () => {
@@ -82,7 +95,7 @@ console.log(id)
 
       },
       {
-        text: "Continue", onPress: () => console.log("Continue Cache Pressed")
+        text: "Continue", onPress: () => cacheClear()
 
       },
       {defaultIndex : 1}

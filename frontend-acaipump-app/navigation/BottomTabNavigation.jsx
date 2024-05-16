@@ -1,7 +1,7 @@
 import { View, Text, Platform } from 'react-native';
 import React from 'react';
 
-import { Home, Profile, Search, Testes, Orders } from "../screens/index"
+import { Home, Profile, Search, Testes } from "../screens/index"
 import { Ionicons } from "@expo/vector-icons"
 import { SIZES, COLORS } from "../constants/index"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -73,20 +73,6 @@ const BottomTabNavigation = () => {
                         tabBarIcon: ({focused}) => {
                             return (
                                 <Ionicons name={focused ? "person-circle" : "person-circle-outline"}
-                                size={24}
-                                color={focused ? COLORS.primary : COLORS.gray2} />
-                            )
-                        }
-                    }} />
-
-
-                    <Tab.Screen 
-                    name="Orders"
-                    component={Orders}
-                    options={{
-                        tabBarIcon: ({focused}) => {
-                            return (
-                                <Ionicons name={focused ? "bag" : "bag-outline"}
                                 size={24}
                                 color={focused ? COLORS.primary : COLORS.gray2} />
                             )
