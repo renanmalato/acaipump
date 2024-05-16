@@ -13,13 +13,13 @@ module.exports = {
     },
 
      getUserOrders: async (req, res) => {
-        const userId = req.params.id;
+        const userId = req.user.id;
       
         try {
           const userOrders = await Orders.find({ userId })
                         .populate({
                 path: 'productId',
-                select: "-description -product_location -product_calories -product_protein -product_carbs -product_addedsugar -product_vitamins"
+                select: "-description -product_location"
             })
             .exec();
       
