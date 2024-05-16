@@ -5,7 +5,7 @@ const app = express();
 const productRouter = require('./routes/products');
 const authRouter = require('./routes/auth')
 const userRouter = require('./routes/user')
-const orderRouter = require('./routes/order')
+const orderRouter = require('./routes/orders')
 const cartRouter = require('./routes/cart')
 const port = 3000; 
 
