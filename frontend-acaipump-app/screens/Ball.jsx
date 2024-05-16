@@ -40,20 +40,6 @@ const DragSwipeComponent = ({ navigation }) => {
     }, [])
   );
 
-  const duration = 1000;
-  const swipeIndicator = useSharedValue(100);
-  const swipeIndicatorStyle = useAnimatedStyle(() => ({
-    marginBottom: swipeIndicator.value,
-  }))
-
-  useEffect(() => {
-    swipeAnimation.value = withRepeat(
-      withTiming(-swipeAnimation.value, {
-        duration,
-        easing: Easing.linear
-      }), -1, true
-    )
-  }, []);
 
   return (
     <View
@@ -142,10 +128,6 @@ const DragSwipeComponent = ({ navigation }) => {
             />
         </Svg>
 
-
-    <Animated.View style={swipeIndicatorStyle}>
-      <Ionicons name='chevron-up' size={SIZES.large} color={COLORS.white} />
-    </Animated.View>
 
 
 
