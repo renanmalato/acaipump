@@ -5,7 +5,10 @@ const Cart = require ('../models/Cart');
 module.exports = {
     addToCart: async (req, res) => {
         const userId = req.user.id;
-        const { cartItem, quantity } = req.body;
+        const {  cartItem, quantity } = ({
+            cartItem: req.body.cartItem,
+            quantity: req.body.quantity
+          });
 
         try {
             const cart = await Cart.findOne({ userId })
@@ -42,10 +45,9 @@ module.exports = {
     },
 
     getCart: async (req, res) => {
-        const userId = req.user.id;
 
         try {
-
+            const userId = req.user.id;
             const cart = await Cart.find({userId: userId}).populate('products.cartItem', "_id title subtitle unity price imageUrl");
 
             res.status(200).json(cart)
