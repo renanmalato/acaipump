@@ -17,7 +17,10 @@ module.exports = {
       
         try {
           const userOrders = await Orders.find({ userId })
-            .populate('productId') // Populate the 'productId' field
+                        .populate({
+                path: 'productId',
+                select: "-description - product_location -product_calories -product_protein -product_carbs -product_addedsugar -product_vitamins"
+            })
             .exec();
       
           res.status(200).json(userOrders);
