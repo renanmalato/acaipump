@@ -830,7 +830,7 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.large,
   },
 
-   // ----------------------- //
+  // ----------------------- //
   //                         //
   //    CartTile.JSX       //
   //                         //
@@ -908,6 +908,85 @@ const styles = StyleSheet.create({
   },
 
 
+  // ----------------------- //
+  //                         //
+  //    Orders.JSX           //
+  //                         //
+  //    orders = orders      //
+  //                         //
+  // ----------------------- //
+
+
+  ordersContainer: {
+    marginTop: SIZES.large,
+    marginHorizontal: SIZES.large,
+  },
+
+  ordersTitleRow: {
+    flexDirection: "row",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: SIZES.width - 50,
+    marginBottom: SIZES.large,
+  },
+
+  ordersTitleText: {
+    fontFamily: 'bold',
+    fontSize: SIZES.large,
+    letterSpacing: 4,
+    marginLeft: SIZES.small,
+  },
+  // ordersContainer: (color) => ( {
+  //   flex: 1,
+  //   justifyContent: 'space-between',
+  //   alignItems: 'center',
+  //   flexDirection: 'row',
+  //   marginBottom: SIZES.large,
+  //   padding: SIZES.small,
+  //   borderRadius: SIZES.small,
+  //   backgroundColor: color,
+  //   ...SHADOWS.medium, 
+  //   shadowColor: COLORS.primary,
+  //   // marginTop: SIZES.large,
+  //   // marginHorizontal: SIZES.large,
+  // }),
+
+  ordersImageContainer: {
+    width: SIZES.large * 5,
+    borderRadius: SIZES.medium,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ordersImage: {
+    width: '100%',
+    height: SIZES.large *5,
+    borderRadius: SIZES.medium,
+    reszeMode: 'cover',
+  },
+  ordersTextContainer: {
+    flex: 1,
+    marginHorizontal: SIZES.large,
+  },
+  ordersTitle: {
+    fontFamily: 'semibold',
+    fontSize: SIZES.large,
+    color: COLORS.primary,
+  },
+  ordersSubtitle: {
+    fontFamily: 'regular',
+    fontSize: SIZES.small,
+    color: COLORS.gray,
+  },
+  ordersPrice: {
+    fontFamily: 'regular',
+    fontSize: SIZES.small,
+    color: COLORS.black,
+  },
+  ordersUnity: {
+    fontFamily: 'regular',
+    fontSize: SIZES.small,
+    color: COLORS.black,
+  },
 
 });
 

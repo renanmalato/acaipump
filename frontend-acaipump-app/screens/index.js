@@ -9,6 +9,7 @@ import Orders from "./Orders"
 import Favorites from "./Favorites"
 import SignUp from "./SignUp"
 import Testes from "./Testes"
+import OrdersTile from "../components/OrdersTile"
 
 export {
     Home,
@@ -22,5 +23,6 @@ export {
     Favorites,
     SignUp,
     Testes,
+    OrdersTile
 
 }
