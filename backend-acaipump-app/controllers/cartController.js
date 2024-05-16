@@ -45,19 +45,13 @@ module.exports = {
     },
 
     getCart: async (req, res) => {
-
         try {
-            const userId = req.user.id;
-            const cart = await Cart.find({userId: userId}).populate('products.cartItem', "_id title subtitle unity price imageUrl");
+            const cart = await Cart.find({userId: req.user.id})
+            .populate('products.cartItem', "_id title subtitle unity price imageUrl");
 
             res.status(200).json(cart)
-
-
-        } catch (error) {
-
-            res.status(500).json(error)
-            console.log(error);
-
+        } catch (err) {
+            res.status(500).json(err)
         }
     },
 
