@@ -10,7 +10,7 @@ const Orders = ({ navigation }) => {
 
   const { data, loading, error, refetch } = fetchOrders();
 
-  console.log(data);
+  console.log(data)
 
   return (
 

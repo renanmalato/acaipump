@@ -11,7 +11,7 @@ const verifyToken = (req, res, next) => {
                 return res.status(403).json("Invalid token")
             }
 
-            req.user = user; 
+            req.user = user;    
             next();
         })
     } else {

@@ -27,7 +27,6 @@ const fetchOrders = () => {
 
         } catch (error) {
             setError(error)
-            
         } finally {
             setLoader(false);
         }

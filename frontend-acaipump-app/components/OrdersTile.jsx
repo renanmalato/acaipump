@@ -7,9 +7,7 @@ import { AntDesign } from '@expo/vector-icons'
 const OrdersTile = ({item}) => {
   return (
     
-    <TouchableOpacity style={styles.ctContainer(!select ? COLORS.white : COLORS.secondary)}
-        onPress={onPress}
-    >
+    <TouchableOpacity style={styles.ctContainer(COLORS.secondary)}>
 
         <View style={styles.ctImageContainer}>
             <Image

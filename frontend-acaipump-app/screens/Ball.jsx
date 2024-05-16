@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, PanResponder, Animated, Vibration, Text } from 'react-native';
+import { View, PanResponder, Animated, Vibration, Text, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect hook
 import Svg, { Path } from 'react-native-svg'
 import { raiomask1, raiomask2 } from '../assets/images/SVG/svg';
@@ -40,6 +40,21 @@ const DragSwipeComponent = ({ navigation }) => {
     }, [])
   );
 
+  const marginBottomAnimated = useSharedValue(200);
+
+
+  const swipeUpLoopAnimation = useAnimatedStyle(() => ({
+    marginBottom: marginBottomAnimated.value,
+  }));
+
+
+  useEffect(() => {
+    marginBottomAnimated.value = withRepeat(
+      withTiming(0, { duration: 1000, easing: Easing.linear }),
+      -1,
+      true
+    );
+  }, []);
 
   return (
     <View
@@ -128,11 +143,19 @@ const DragSwipeComponent = ({ navigation }) => {
             />
         </Svg>
 
-
+            <Animated.View style={[styles.view, swipeAnimation]}>
+              <Ionicons name='chevron-up' size={50} color={COLORS.white}></Ionicons>
+            </Animated.View>
 
 
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  view: {
+    position: 'absolute', bottom: 200,
+  }
+});
 
 export default DragSwipeComponent;
