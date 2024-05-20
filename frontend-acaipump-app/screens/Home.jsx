@@ -1,15 +1,20 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useEffect } from 'react'
-import { SafeAreaView } from 'react-native'
-import styles from "./home.style"
-import { Ionicons, Fontisto } from "@expo/vector-icons"
-import { Welcome, Carroussel, Headings, ProductsRow, CtaButton } from "../components/index"
-import { SIZES, COLORS } from '../constants'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useState } from 'react'
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { SafeAreaView } from "react-native";
+import styles from "./home.style";
+import { Ionicons, Fontisto } from "@expo/vector-icons";
+import {
+  Welcome,
+  Carroussel,
+  Headings,
+  ProductsRow,
+  CtaButton,
+} from "../components/index";
+import { SIZES, COLORS } from "../constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { EmptyBottom, LogoSymbol } from "../assets/images/SVG/SvgIndex";
 
-const Home = () => {
-
+const Home = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
 
@@ -25,58 +30,79 @@ const Home = () => {
       const currentUser = await AsyncStorage.getItem(useId);
 
       if (currentUser !== null) {
-        const parseData = JSON.parse(currentUser)
-        setUserData(parseData)
-        setUserLogin(true)
-      } 
+        const parseData = JSON.parse(currentUser);
+        setUserData(parseData);
+        setUserLogin(true);
+      }
     } catch (error) {
-      console.log("Error retrieving the data:", error)
+      console.log("Error retrieving the data:", error);
     }
-    
-  }
+  };
 
+  // Truncate text 20 characters Location
 
+const truncateText = (text, maxCharacters) => {
+  return text.length > maxCharacters ? `${text.substring(0, maxCharacters)}...` : text;
+};
 
+const locationText = userData ? userData.location : "Belém, PA";
+const truncatedLocationText = truncateText(locationText, 20);
 
 
   return (
-    
-    <SafeAreaView style={styles.safeAreaView}>
+    <View style={styles.container}>
 
-      <View style={styles.appBarWrapper}>
-        <View style={styles.appBar}>
+      <SafeAreaView style={styles.topContainer}>
+        <View style={styles.appBarWrapper}>
+          <View style={styles.appBar}>
 
-          <Ionicons name='location-outline' size={24} />
-          <Text style={styles.location}> { userData ? userData.location : 'User not logged in' } </Text>
+            <Text style={styles.entregarEm}>Entregar em:</Text>
 
-          <View style={{alignItems: "flex-end"}}>
-            <View style={styles.cartCount}>
-              <Text style={styles.cartNumber}>8</Text>
-            </View>
-            <TouchableOpacity>
-              <Fontisto name='shopping-bag' size={26}/>
+
+
+            <View style={styles.locationWrapper}>
+            <Ionicons name="location-outline" size={SIZES.large * 0.8} color={COLORS.offwhite} />
+          
+            <TouchableOpacity onPress={()=> navigation.navigate("Profile")}>
+            <Text style={styles.location}>
+              {truncatedLocationText}
+            </Text>
             </TouchableOpacity>
+            </View>
+
+
+
+            <View style={{ alignItems: "flex-end" }}>
+              <View style={styles.cartCount}>
+                <Text style={styles.cartNumber}>8</Text>
+              </View>
+              <TouchableOpacity>
+                <Ionicons name="bag" size={26} color={COLORS.offwhite} />
+              </TouchableOpacity>
+
+
+            </View>
           </View>
-
         </View>
-      </View>
-
-      {/* Wrapped Components */}
+      </SafeAreaView>
 
       <ScrollView>
         <Welcome />
-        <Carroussel />
+        <Carroussel navigation={navigation} />
         <Headings />
         <ProductsRow />
-
+       
+       <View style={styles.emptyBottomView}>
+        <EmptyBottom style={styles.emptyBottom}/>
+        <Text style={styles.emptyBottomText}>Potência natural.</Text>
+        </View>
       </ScrollView>
-      <View style={{bottom: SIZES.large *6}}>
 
-
+      <View style={{ bottom: SIZES.large * 6 }}>
         {/* --------------- */}
         {/* CTA Button Row  */}
         {/* --------------- */}
-{/* 
+        {/* 
         <View style={styles.pgvCtaBtnRow}>
         <TouchableOpacity style={styles.pdCtaBtn} onPress={() => {}}>
           <Text style={styles.pdCtaBtnText}>Pedir Açaí</Text>
@@ -90,12 +116,9 @@ const Home = () => {
           />
           </TouchableOpacity>
         </View> */}
-
-
       </View>
-    </SafeAreaView>
-
-  )
-}
+    </View>
+  );
+};
 
 export default Home;

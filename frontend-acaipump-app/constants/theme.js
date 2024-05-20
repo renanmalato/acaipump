@@ -6,9 +6,13 @@ const androidWidthRatio = 0.9;
 const COLORS = { 
     primary: "#7D12D9",
     primary2: "#91FE4C",
+    primary3: "#6C20A3",
+    shade1: "#592299",
+    textpurple: "#592299",
+    shade3: "#431C70",
     secondary: "#BEFBD6",
     secondary2: "#D4B4FF",
-    secondary3: "#829cb0",
+    secondary3: "#9C7EC4",
     tertiary: "#FF7754",
 
     gray: "#83829A",
@@ -16,10 +20,10 @@ const COLORS = {
 
     offwhite: "#F3F4F8",
     white: "#FFFFFF",
-    black: "#000000",
+    black: "#1A171D",
     red: "#e81e4d",
-    green: "#00C135",
-    lightWhite: "#f0ebf2",
+    shadeGreen: "#66AA3A",
+    lightWhite: "#F3F4F8",
 };
 
 const SIZES = {

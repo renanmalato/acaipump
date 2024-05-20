@@ -2,14 +2,17 @@ import { StyleSheet, Platform, Animated } from "react-native";
 import { COLORS, SHADOWS, SIZES } from "./index";
 
 const styles = StyleSheet.create({
+
+
+
   // ----------------------- //
   //   Welcome Page Styles   //
   // ----------------------- //
 
   container: {
     width: "100%",
-    marginHorizontal: 30,
-    top: SIZES.small,
+    marginHorizontal: SIZES.large,
+    marginVertical: SIZES.large,
   },
   welcomeTxt: {
     fontSize: SIZES.xxLarge,
@@ -20,6 +23,59 @@ const styles = StyleSheet.create({
     fontFamily: "bold",
     color: COLORS.primary,
   },
+  logoWrapper: {
+    backgroundColor: COLORS.primary3,
+    marginTop: -SIZES.large,
+    paddingHorizontal: SIZES.large,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+  },
+  logo: {
+    width: SIZES.large * 8,
+    height: SIZES.large * 4,
+    top: SIZES.xSmall * 0.5,
+  },
+  raioBranco: {
+    width: SIZES.large *4,
+    height: SIZES.large *4,
+    opacity: 0.5,
+    position: 'absolute',
+    right: 0,
+    top: SIZES.large,
+  },
+  topHelloContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  helloUserData:{
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-end', 
+    width: SIZES.large * 7,
+},
+  helloUserText: {
+    fontFamily: 'regular',
+    fontSize: SIZES.xSmall,
+    color: COLORS.gray,
+  },
+
+
+
+  // ----------------------------- //
+  //                               //
+  //  Bottom Tab Navigation.JSX    //
+  //  bTnav = BottomTabNavigation  //
+  //                               //
+  // ----------------------------  //
+
+  bTnavProductsIcon: {
+    marginBottom: SIZES.large * 1.5,
+  },
+
+
+  
 
   // ------------------------- //
   //   ANDROID Safe Area View //
@@ -149,9 +205,25 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  headerTitleView: {
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  },
   headerTitle: {
     fontFamily: "semibold",
     fontSize: SIZES.large * 0.9,
+    color: COLORS.primary3,
+    paddingLeft: SIZES.large * 2.5,
+  },
+  headingLogoSymbolView: {
+    width: SIZES.large,
+    height: SIZES.large,
+    position: 'absolute',
+  },
+  headingLogoSymbol: {
+    width: SIZES.large * 3,
+    height: SIZES.large * 3,
+    
   },
 
   // ----------------------- //
@@ -166,7 +238,7 @@ const styles = StyleSheet.create({
 
   prContainer: {
     marginTop: SIZES.small,
-    marginBottom: 300,
+    marginBottom: SIZES.large,
   },
   pcContainer: {
     width: SIZES.xxLarge * 5,
