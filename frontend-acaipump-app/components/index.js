@@ -7,6 +7,7 @@ import CtaButton from "./CtaButton"
 import BackBtn from './BackBtn';
 import Button from "./Button"
 import CartTile from "./cart/cartTile"
+import EmptyBottom from "./EmptyBottom"
 
 export {
     Welcome,
@@ -18,4 +19,5 @@ export {
     BackBtn,
     Button,
     CartTile,
+    EmptyBottom,
 }

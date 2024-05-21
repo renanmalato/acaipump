@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: SIZES.large *5,
+    
   },
   emptyBottom: {
     width: SIZES.large *10,

@@ -10,7 +10,8 @@ import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "../../constants/styles";
 import { SIZES, COLORS } from "../../constants";
 import useFetch from "../../hook/useFetch";
-import ProductCardView from "./ProductCardView";
+import ProductCardViewTiles from "./ProductCardViewTiles";
+import EmptyBottom from "../EmptyBottom";
 
 const ProductsGridVew = () => {
   const { data, isLoading, error } = useFetch();
@@ -26,16 +27,18 @@ const ProductsGridVew = () => {
   }
 
   return (
+    
     <View style={styles.pgvContainer}>
       <FlatList
         data={data}
-        numColumns={2}
-        renderItem={({ item }) => <ProductCardView item={item} />}
+        renderItem={({ item }) => <ProductCardViewTiles item={item} />}
         contentContainerStyle={styles.pgvFlatList}
-        columnWrapperStyle={styles.pgvColumnWrapper}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
+        ListFooterComponent={<View style={{marginTop: SIZES.large * 5}}><EmptyBottom /></View>}
       />
     </View>
+   
+     
   );
 };
 

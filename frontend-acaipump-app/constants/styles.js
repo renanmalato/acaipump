@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
 
   bTnavProductsIcon: {
     marginBottom: SIZES.large * 1.5,
+    ...SHADOWS.medium,
+    shadowColor: COLORS.black,
   },
 
 
@@ -193,10 +195,99 @@ const styles = StyleSheet.create({
     marginTop: SIZES.small,
   },
 
+
+  // ------------------------- //
+  // ProductCardViewTiles.JSX  //
+  //                           //
+  //   pcvt = SearchTile         //
+  //                           //
+  // ------------------------- //
+
+  pcvtContainer: {
+    marginHorizontal: SIZES.small,
+  },
+  pcvtCardView: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SIZES.small,
+    flexDirection: 'row',
+    paddingLeft: SIZES.medium,
+    paddingTop: SIZES.medium,
+    paddingBottom: SIZES.medium,
+    borderRadius: SIZES.small,
+    backgroundColor: COLORS.white,
+    ...SHADOWS.large,
+    shadowColor: COLORS.primary,
+  },
+  pcvtImage: {
+    width: SIZES.large * 4,
+    backgroundColor: COLORS.secondary,
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  pcvtProductImg: {
+    width: '100%',
+    height: SIZES.large * 4,
+    borderRadius: SIZES.small,
+    resizeMode: 'cover',
+  },
+  pcvtTextContainer: {
+    flex: 1,
+    display: 'flex',
+    marginHorizontal: SIZES.medium,
+    alignItems: 'baseline',
+    justifyContent: 'flex-start',
+  },
+  pcvtProductTitle: {
+    fontFamily: "bold",
+    fontSize: SIZES.medium * 1.1,
+    marginBottom: SIZES.xSmall * 0.3,
+    color: COLORS.primary,
+  },
+  pcvtProductSubtitle: {
+    fontSize: SIZES.small,
+    fontFamily: 'semibold',
+    color: COLORS.gray,
+    marginTop: SIZES.small,
+  },
+  pcvtProductPrice: {
+    fontSize: SIZES.small,
+    fontFamily: 'semibold',
+    color: COLORS.gray,
+    marginTop: SIZES.small,
+  },
+  pcvtButtonContainer: {
+    backgroundColor: COLORS.primary3,
+    height: '129%',
+    width: SIZES.large *3.5,
+    paddingHorizontal: 10,
+    display: 'flex',
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomEndRadius: SIZES.small,
+    borderTopEndRadius: SIZES.small,
+
+  },
+  pcvtButtonText: {
+    fontFamily: 'semibold',
+    fontSize: SIZES.small,
+    color: COLORS.lightWhite,
+    textAlign: 'center',
+    marginTop: SIZES.xSmall * 0.5,
+  },
+
+
   // ----------------------- //
   //   Headings   Styles     //
   // ----------------------- //
 
+  headingsContainerWrapper: {
+   flex: 1,
+   display: 'flex',
+   left: 0,
+  },
   headingsContainer: {
     marginTop: SIZES.medium,
     marginHorizontal: SIZES.medium,
@@ -213,6 +304,12 @@ const styles = StyleSheet.create({
     fontFamily: "semibold",
     fontSize: SIZES.large * 0.9,
     color: COLORS.primary3,
+    paddingLeft: SIZES.large * 2.5,
+  },
+  headerTitleWhite: {
+    fontFamily: "semibold",
+    fontSize: SIZES.large * 0.9,
+    color: COLORS.white,
     paddingLeft: SIZES.large * 2.5,
   },
   headingLogoSymbolView: {
@@ -253,6 +350,10 @@ const styles = StyleSheet.create({
     }),
     backgroundColor: COLORS.white,
     borderRadius: SIZES.medium,
+    ...SHADOWS.large, 
+    shadowColor: COLORS.primary,
+    marginBottom: SIZES.large,
+    
   },
   pcImageContainer: {
     flex: 1,
@@ -393,6 +494,23 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "baseline",
   },
+  pdPriceAndUnityWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+    pdUnityView: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: SIZES.small,
+    },
+    pdUnity: {
+      fontFamily: 'semibold',
+      fontSize: SIZES.xSmall,
+      color: COLORS.primary3,
+    },
+
+  
   pdPriceInteger: {
     fontFamily: "semibold",
     fontSize: SIZES.medium * 1.2,
@@ -404,7 +522,16 @@ const styles = StyleSheet.create({
     fontFamily: "regular",
   },
 
-  // Product Rating
+  lineDiv: (marginBottom) => ({ 
+    height: 0.5,
+    backgroundColor: COLORS.gray2,
+    marginTop: SIZES.large * 1.1,
+    marginBottom: marginBottom,
+    zIndex: 999,
+    
+  }),
+
+  // Product Rating and How Many
 
   pdRatingRow: {
     top: SIZES.medium,
@@ -424,11 +551,53 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
     fontFamily: "regular",
   },
+  pdHowManyView: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'baseline',
+    justifyContent: 'center',
+    paddingTop: SIZES.small,
+  },
+
+  pdHowManyText: {
+    fontFamily: 'regular',
+  },
+
+  // Add to Cart Row
+  pdAddToCartRowWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: SIZES.large,
+    marginVertical: SIZES.small,
+  },
+  pdIncrementCartWrapper: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  pdIncrementCartText: {
+    fontFamily: 'regular',
+    fontSize: SIZES.large * 0.8,
+  },
+  pdAddToCartButtonView: {
+    backgroundColor: COLORS.white,
+    paddingVertical: SIZES.xSmall,
+    paddingHorizontal: SIZES.medium,
+    borderWidth: 1,
+    borderColor: COLORS.primary3,
+    borderRadius: SIZES.xSmall * 0.5,
+  },
+  pdAddToCartButtonText: {
+    fontFamily: 'semibold',
+    fontSize: SIZES.small,
+    color: COLORS.primary3,
+  },
 
   // Product Description
 
   pdDescriptionWrapper: {
-    marginTop: SIZES.xxLarge * 2.5,
+    marginTop: SIZES.xxLarge * 5.5,
     marginHorizontal: SIZES.xLarge,
   },
   pdDescriptionTitle: {
@@ -513,6 +682,7 @@ const styles = StyleSheet.create({
   pdNutriFactsWrapper: {
     paddingHorizontal: SIZES.xxLarge,
     marginTop: SIZES.xLarge,
+    marginBottom: SIZES.xLarge,
   },
   pdNutriFactsTitle: {
     fontFamily: "semibold",
@@ -546,8 +716,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightWhite,
   },
   pgvTopWrapper: {
-    height: SIZES.xxLarge * 1.3,
-    backgroundColor: COLORS.lightWhite,
+    height: SIZES.xxLarge * 1.9,
+    backgroundColor: COLORS.primary3,
   },
   pgUpperRow: {
     marginHorizontal: SIZES.xLarge,
@@ -588,11 +758,12 @@ const styles = StyleSheet.create({
   pgvContainer: {
     backgroundColor: COLORS.lightWhite,
     justifyContent: "center",
+    marginBottom: SIZES.large,
   },
   pgvTopSafeArea: {
     flex: 0,
     marginTop: -SIZES.large * 1.2,
-    backgroundColor: COLORS.lightWhite,
+    backgroundColor: COLORS.primary3,
     ...Platform.select ({
       ios:{}, android: {marginTop: SIZES.large}
     })
@@ -608,10 +779,9 @@ const styles = StyleSheet.create({
   },
   pgvFlatList: {
     top: SIZES.xLarge,
-    paddingBottom: 300,
   },
   separator: {
-    height: SIZES.small,
+    height: SIZES.xSmall,
   },
   pgvCtaBtnRow: {
     justifyContent: "center",
@@ -1058,6 +1228,35 @@ const styles = StyleSheet.create({
     fontFamily: 'regular',
     fontSize: SIZES.small,
     color: COLORS.black,
+  },
+
+
+  
+  // ----------------------- //
+  //                         //
+  //    Empty Bottom         //
+  //                         //
+  //    component            //
+  //                         //
+  // ----------------------- //
+
+
+
+  emptyBottomView: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: SIZES.large *5,
+    
+  },
+  emptyBottom: {
+    width: SIZES.large *10,
+    height: SIZES.large * 10,
+  },
+  emptyBottomText: {
+    fontFamily: "semibold",
+    fontSize: SIZES.small,
+    color: COLORS.primary3,
   },
 
 });

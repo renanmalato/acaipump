@@ -13,7 +13,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { SIZES, COLORS } from "../constants/index";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { ProductsIcon } from "../assets/images/SVG/SvgIndex";
+import { ProductsIcon, ProductsIconFocused } from "../assets/images/SVG/SvgIndex";
 import styles from "../constants/styles";
 
 
@@ -23,6 +23,7 @@ const screenOptions = {
   tabBarShowLabel: true,
   tabBarHideOnKeyboard: true,
   headerShown: false,
+  tabBarActiveTintColor: COLORS.primary,
   tabBarStyle: {
     position: "absolute",
     ...Platform.select({
@@ -76,13 +77,13 @@ const BottomTabNavigation = () => {
                 }} /> */}
 
       <Tab.Screen
-        name="Favorites"
+        name="Favoritos"
         component={Favorites}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={focused ? "person-circle" : "person-circle-outline"}
+                name={focused ? "heart" : "heart-outline"}
                 size={24}
                 color={focused ? COLORS.primary : COLORS.gray2}
               />
@@ -92,14 +93,28 @@ const BottomTabNavigation = () => {
       />
 
       <Tab.Screen
-        name="Products"
+        name="Produtos"
         component={Products}
         options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-                focused ? <ProductsIcon style={styles.bTnavProductsIcon} width={SIZES.large * 2.7} height={SIZES.large * 3} /> : <ProductsIcon style={styles.bTnavProductsIcon} width={SIZES.large * 2.7} height={SIZES.large * 3} />
-            );
-          },
+          tabBarIcon: ({ focused }) => 
+            (
+                focused ? (
+                <ProductsIconFocused 
+                style={styles.bTnavProductsIcon} 
+                width={SIZES.large * 2.6} 
+                height={SIZES.large * 3} 
+                /> 
+              ) : (
+                <ProductsIconFocused 
+                style={styles.bTnavProductsIcon} 
+                width={SIZES.large * 2.6} 
+                height={SIZES.large * 3} 
+                />
+              )
+            ),
+            tabBarLabel: ({ focused }) => (
+              <Text style={{color: focused ? COLORS.gray : COLORS.black, fontSize: SIZES.xSmall * 0.8, }}>Produtos</Text>
+            ),
         }}
       />
 
@@ -110,7 +125,7 @@ const BottomTabNavigation = () => {
           tabBarIcon: ({ focused }) => {
             return (
               <Ionicons
-                name={focused ? "person-circle" : "person-circle-outline"}
+                name={focused ? "bag" : "bag-outline"}
                 size={24}
                 color={focused ? COLORS.primary : COLORS.gray2}
               />

@@ -120,7 +120,7 @@ const LoginPage = ({ navigation }) => {
         <View>
           <BackBtn onPress={() => navigation.goBack()} />
           <Image
-            source={require("../assets/images/bk.png")}
+            source={require("../assets/images/loginpage.jpg")}
             style={styles.loginPageCover}
           />
           <Text style={styles.loginPageTitle}>

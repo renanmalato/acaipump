@@ -9,10 +9,12 @@ import {
   Headings,
   ProductsRow,
   CtaButton,
+  EmptyBottom,
 } from "../components/index";
 import { SIZES, COLORS } from "../constants";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { EmptyBottom, LogoSymbol } from "../assets/images/SVG/SvgIndex";
+import { LogoSymbol } from "../assets/images/SVG/SvgIndex";
+
 
 const Home = ({ navigation }) => {
   const [userData, setUserData] = useState(null);
@@ -92,10 +94,7 @@ const truncatedLocationText = truncateText(locationText, 20);
         <Headings />
         <ProductsRow />
        
-       <View style={styles.emptyBottomView}>
-        <EmptyBottom style={styles.emptyBottom}/>
-        <Text style={styles.emptyBottomText}>Potência natural.</Text>
-        </View>
+       <EmptyBottom />
       </ScrollView>
 
       <View style={{ bottom: SIZES.large * 6 }}>
