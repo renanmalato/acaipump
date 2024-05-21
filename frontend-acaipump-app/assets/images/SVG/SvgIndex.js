@@ -6,6 +6,7 @@ import LogoSymbol from "./sosimbolo-verdeacaipump-logo.svg";
 import EmptyBottomSVG from "./empty-bottomacaipump.svg";
 import ProductsIcon from "./products-icon.svg";
 import ProductsIconFocused from "./products-icon-focused.svg";
+import Oops from "./oops.svg";
 
 export { 
             Logo, 
@@ -14,6 +15,7 @@ export {
             LogoSymbol,
             EmptyBottomSVG,
             ProductsIcon,
-            ProductsIconFocused
+            ProductsIconFocused,
+            Oops,
         
         };

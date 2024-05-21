@@ -34,7 +34,13 @@ const ProductsGridVew = () => {
         renderItem={({ item }) => <ProductCardViewTiles item={item} />}
         contentContainerStyle={styles.pgvFlatList}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
-        ListFooterComponent={<View style={{marginTop: SIZES.large * 5}}><EmptyBottom /></View>}
+        ListFooterComponent={ 
+                                <View>
+                                  <Text style={[styles.pcSubtitle, {textAlign: 'center', marginTop: SIZES.large *2, marginBottom: SIZES.large}]}>Em breve mais novidades!</Text>
+                                  <EmptyBottom />
+                                  </View>
+                                  
+                            }
       />
     </View>
    

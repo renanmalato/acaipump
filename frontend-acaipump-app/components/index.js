@@ -8,6 +8,7 @@ import BackBtn from './BackBtn';
 import Button from "./Button"
 import CartTile from "./cart/cartTile"
 import EmptyBottom from "./EmptyBottom"
+import SkeletonLoading from "./SkeletonLoading"
 
 export {
     Welcome,
@@ -20,4 +21,5 @@ export {
     Button,
     CartTile,
     EmptyBottom,
+    SkeletonLoading
 }

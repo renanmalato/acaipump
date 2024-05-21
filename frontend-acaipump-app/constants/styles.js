@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, Animated } from "react-native";
+import { StyleSheet, Platform, Animated, ImageBackground } from "react-native";
 import { COLORS, SHADOWS, SIZES } from "./index";
 
 const styles = StyleSheet.create({
@@ -522,14 +522,6 @@ const styles = StyleSheet.create({
     fontFamily: "regular",
   },
 
-  lineDiv: (marginBottom) => ({ 
-    height: 0.5,
-    backgroundColor: COLORS.gray2,
-    marginTop: SIZES.large * 1.1,
-    marginBottom: marginBottom,
-    zIndex: 999,
-    
-  }),
 
   // Product Rating and How Many
 
@@ -653,7 +645,7 @@ const styles = StyleSheet.create({
         height: SIZES.xxLarge * 1.6,
       },
     }),
-
+    zIndex: 999,
     backgroundColor: COLORS.lightWhite,
   },
   pdCtaBtn: {
@@ -1236,6 +1228,8 @@ const styles = StyleSheet.create({
   //                         //
   //    Empty Bottom         //
   //                         //
+  //    Empty States         //
+  //                         //
   //    component            //
   //                         //
   // ----------------------- //
@@ -1246,6 +1240,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    
     marginBottom: SIZES.large *5,
     
   },
@@ -1258,6 +1253,99 @@ const styles = StyleSheet.create({
     fontSize: SIZES.small,
     color: COLORS.primary3,
   },
+
+  emptyStateView: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: SIZES.large * 2,
+    marginHorizontal: SIZES.large,
+  },
+  
+  emptyStateImage: {
+    resizeMode: 'contain',
+    width: 300,
+    marginTop: -SIZES.large * 3,
+  },
+
+  emptyStateText: {
+    fontFamily: "regular",
+    fontSize: SIZES.small,
+    color: COLORS.gray,
+    marginTop: -SIZES.small,
+    textAlign: 'center',
+    marginTop: -SIZES.large * 3,
+  },
+
+  emptyStateButton: {
+    justifyContent: "center",
+    bottom: 0,
+    ...Platform.select({
+      ios: {
+        height: SIZES.xxLarge * 2.2,
+      },
+      android: {
+        bottom: SIZES.xSmall / 10,
+        height: SIZES.xxLarge * 1.6,
+      },
+    }),
+    width: '100%',
+    marginTop: SIZES.large,
+  },
+
+
+  // ---------------------- //
+  //                        //
+  //   Hacks ˆ%ˆ%&*         //
+  //   and General          //
+  //                        //
+  // ---------------------  //
+
+
+  lineDiv: (marginBottom) => ({ 
+    height: 0.5,
+    backgroundColor: COLORS.gray2,
+    marginTop: SIZES.large * 1.1,
+    marginBottom: marginBottom,
+    zIndex: 999,
+  }),
+
+    centerView2: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: COLORS.black,
+    },
+
+    centerText: {
+     textAlign: 'center',
+    },
+
+    trashIcon: {
+      backgroundColor: COLORS.lightWhite,
+      position: 'absolute',
+      paddingVertical: SIZES.small * 0.6,
+      paddingHorizontal: SIZES.small,
+      borderRadius: SIZES.xSmall,
+      right: 0,
+      bottom: -SIZES.small,
+      flex: 1,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      ...SHADOWS.large,
+      shadowColor: COLORS.black,
+      borderWidth: 0.5,
+      borderColor: COLORS.gray2,
+    },
+
+    trashText: {
+      color: COLORS.red,
+      fontFamily: 'medium',
+      fontSize: SIZES.small * 0.8,
+    },
+    
+
 
 });
 

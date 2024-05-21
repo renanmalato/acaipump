@@ -82,10 +82,10 @@ const Products = ({ navigation }) => {
           </TouchableOpacity>
         </View>
 
-        
 
+        </View>
         <SafeAreaView style={styles.pgvBottomSafeArea}></SafeAreaView>
-      </View>
+    
     </>
   );
 };

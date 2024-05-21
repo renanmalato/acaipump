@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { SIZES, COLORS } from "../constants/index";
 import fetchCart from "../hook/fetchCart";
 import { Button, CartTile } from "../components";
+import { LogoSymbol } from "../assets/images/SVG/SvgIndex";
 
 const Cart = ({ navigation }) => {
   const { data, loading, error, refetch } = fetchCart();
@@ -13,16 +14,40 @@ const Cart = ({ navigation }) => {
   const [ select, setSelect ] = useState(false);
   
   return (
-    <SafeAreaView style={styles.favContainer}>
-      <View style={styles.favTitleRow}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons
-            name="chevron-back-circle"
-            size={SIZES.large}
-            color={COLORS.primary}
-          />
-        </TouchableOpacity>
-        <Text style={styles.favTitleText}>Cart</Text>
+    
+    <View style={styles.pgContainer}>
+    <SafeAreaView style={styles.pgvTopSafeArea}>
+      <View style={{ paddingTop: SIZES.large * 1.5 }} />
+    </SafeAreaView>
+
+    <View style={styles.pgContainer}>
+      {/* ---------------------------- */}
+      {/*   Top Back and Heart Icons   */}
+      {/* ---------------------------- */}
+      <View style={[styles.pgvTopWrapper, { overflow: "hidden" }]}>
+        <View style={styles.pgUpperRow}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Ionicons
+              name="chevron-back-circle"
+              size={SIZES.xLarge}
+              color={COLORS.white}
+            />
+          </TouchableOpacity>
+
+          <View style={styles.headingsContainerWrapper}>
+            <View style={styles.headingsContainer}>
+              <View style={styles.header}>
+                <View style={styles.headingLogoSymbolView}>
+                  <LogoSymbol style={styles.headingLogoSymbol} />
+                </View>
+
+                <View style={styles.headerTitleView}>
+                  <Text style={styles.headerTitleWhite}>Sacola</Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
       </View>
 
       {loading 
@@ -53,7 +78,8 @@ const Cart = ({ navigation }) => {
         }
 
 
-    </SafeAreaView>
+    </View>
+    </View>
   );
 };
 
