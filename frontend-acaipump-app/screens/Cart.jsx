@@ -17,14 +17,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import WebView from "react-native-webview";
 
 const Cart = ({ navigation }) => {
-  const { data, loading, error, refetch } = fetchCart();
+  const { data, loading } = fetchCart();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selected, setSelected] = useState(null);
   const [select, setSelect] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const deliveryFee = 10.0;
-
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [paymentUrl, setPaymentUrl] = useState(null);
 
 
   useEffect(() => {
@@ -33,22 +33,28 @@ const Cart = ({ navigation }) => {
     }
   }, [data]);
 
-  const subtotal = useMemo(() => {
-    return cartItems
-      .reduce((total, item) => total + item.cartItem.price * item.quantity, 0)
-      .toFixed(2);
-  }, [cartItems]);
+  const calculateSubtotal = (items) => {
+    return items.reduce((total, item) => total + item.cartItem.price * item.quantity, 0).toFixed(2);
+  };
 
   useEffect(() => {
-    const newTotalCart = (parseFloat(subtotal) + deliveryFee).toFixed(2);
+    const newSubtotal = calculateSubtotal(cartItems);
+    const newTotalCart = (parseFloat(newSubtotal) + deliveryFee).toFixed(2);
     setCartTotal(newTotalCart);
-    AsyncStorage.setItem('cartTotal', newTotalCart);
-  }, [subtotal, deliveryFee]);
+    AsyncStorage.setItem("cartTotal", newTotalCart);
+  }, [cartItems]);
 
-  const updateCartItem = (updatedItem) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
-    );
+  const updateCartItem = async (updatedItem) => {
+    try {
+      // Update the item in the database
+      await AddToCart(updatedItem.cartItem._id, updatedItem.quantity);
+
+      // Fetch the updated cart data
+      const updatedCart = await fetchCart();
+      setCartItems(updatedCart.data);
+    } catch (error) {
+      console.error("Failed to update cart item", error);
+    }
   };
 
 
@@ -83,12 +89,9 @@ const Cart = ({ navigation }) => {
   // Stripe Checkout Functions and States   //
   // -------------------------------------- //
 
-  const [paymentUrl, setPaymentUrl] = useState(null);
-
   const createCheckOut = async () => {
     const id = await AsyncStorage.getItem("id");
-
-    const totalAmount = parseFloat(subtotal) + deliveryFee;
+    const totalAmount = parseFloat(calculateSubtotal(cartItems)) + deliveryFee;
 
     const response = await fetch(
       "http://acaipump-production.up.railway.app/stripe/create-checkout-session",
@@ -109,18 +112,18 @@ const Cart = ({ navigation }) => {
         }),
       }
     );
+
     const { url } = await response.json();
     setPaymentUrl(url);
   };
 
   const handleBuy = () => {
-    console.log("Is Logged In:", isLoggedIn);
     if (!isLoggedIn) {
       navigation.navigate("LoginPage");
     } else {
       createCheckOut();
     }
-  };  
+  };
 
   const onNavigationStateChange = (webViewState) => {
     const { url } = webViewState;
@@ -226,7 +229,7 @@ const Cart = ({ navigation }) => {
                           </Text>
 
                           <Text style={styles.cartTotalsText("regular")}>
-                            R$ {subtotal}
+                          R$ {calculateSubtotal(cartItems)}
                           </Text>
                           <View style={styles.lineDivTop(SIZES.large * 1)} />
                         </View>
