@@ -22,14 +22,10 @@ const Cart = ({ navigation }) => {
   const [select, setSelect] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const deliveryFee = 10.0;
+
   const [cartTotal, setCartTotal] = useState(0);
-
-  useEffect(() => {
-    const newTotalCart = parseFloat(subtotal) + deliveryFee;
-    setCartTotal(newTotalCart.toFixed(2));
-  }, [subtotal, deliveryFee]);
-
   const [cartItems, setCartItems] = useState([]);
+
 
   useEffect(() => {
     if (data) {
@@ -37,24 +33,27 @@ const Cart = ({ navigation }) => {
     }
   }, [data]);
 
+  const subtotal = useMemo(() => {
+    return cartItems
+      .reduce((total, item) => total + item.cartItem.price * item.quantity, 0)
+      .toFixed(2);
+  }, [cartItems]);
+
+  useEffect(() => {
+    const newTotalCart = (parseFloat(subtotal) + deliveryFee).toFixed(2);
+    setCartTotal(newTotalCart);
+    AsyncStorage.setItem('cartTotal', newTotalCart);
+  }, [subtotal, deliveryFee]);
+
   const updateCartItem = (updatedItem) => {
     setCartItems((prevItems) =>
       prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
     );
   };
 
+
   // Total Cart State and Function Declarations
 
-  const subtotal = useMemo(() => {
-    return cartItems
-      .reduce((total, item) => {
-        console.log(
-          `Price: ${item.cartItem.price}, Quantity: ${item.quantity}`
-        );
-        return total + item.cartItem.price * item.quantity;
-      }, 0)
-      .toFixed(2);
-  }, [cartItems]);
 
   // -------------------------------------- //
   //      Check if User is Logged In        //
@@ -89,6 +88,8 @@ const Cart = ({ navigation }) => {
   const createCheckOut = async () => {
     const id = await AsyncStorage.getItem("id");
 
+    const totalAmount = parseFloat(subtotal) + deliveryFee;
+
     const response = await fetch(
       "http://acaipump-production.up.railway.app/stripe/create-checkout-session",
       {
@@ -98,6 +99,7 @@ const Cart = ({ navigation }) => {
         },
         body: JSON.stringify({
           userId: JSON.parse(id),
+          totalAmount: totalAmount,
           cartItems: cartItems.map((item) => ({
             name: item.cartItem.title,
             id: item.cartItem._id,
@@ -118,7 +120,7 @@ const Cart = ({ navigation }) => {
     } else {
       createCheckOut();
     }
-  };
+  };  
 
   const onNavigationStateChange = (webViewState) => {
     const { url } = webViewState;
