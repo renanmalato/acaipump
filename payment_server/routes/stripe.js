@@ -78,7 +78,7 @@ router.post("/create-checkout-session", async (req, res) => {
     phone_number_collection: {
       enabled: false,
     },
-    line_items,
+    line_items: lineItems, // Use lineItems instead of line_items
     mode: "payment",
     customer: customer.id,
     success_url: "https://acaipump-production.up.railway.app/stripe/checkout-success",
