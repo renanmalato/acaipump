@@ -36,6 +36,19 @@ router.post("/create-checkout-session", async (req, res) => {
     },
   });
 
+
+
+  const deliveryFee = 1000; // Assuming delivery fee is $10.00
+  const deliveryFeeItem = {
+    price_data: {
+      currency: "usd",
+      product_data: {
+        name: "Delivery Fee",
+      },
+      unit_amount: deliveryFee,
+    },
+    quantity: 1,
+  };
  
   const line_items = req.body.cartItems.map((item) => {
     return {
@@ -54,6 +67,10 @@ router.post("/create-checkout-session", async (req, res) => {
       quantity: item.cartQuantity,
     };
   });
+
+  lineItems.push(deliveryFeeItem);
+
+
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
    
