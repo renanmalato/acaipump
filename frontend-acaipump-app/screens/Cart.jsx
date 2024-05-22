@@ -16,7 +16,6 @@ import { LogoSymbol } from "../assets/images/SVG/SvgIndex";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WebView from "react-native-webview";
 
-
 const Cart = ({ navigation }) => {
   const { data, loading, error, refetch } = fetchCart();
   const [selected, setSelected] = useState(null);
@@ -25,16 +24,12 @@ const Cart = ({ navigation }) => {
   const deliveryFee = 10.0;
   const [cartTotal, setCartTotal] = useState(0);
 
-
   useEffect(() => {
     const newTotalCart = parseFloat(subtotal) + deliveryFee;
     setCartTotal(newTotalCart.toFixed(2));
   }, [subtotal, deliveryFee]);
 
-
   const [cartItems, setCartItems] = useState([]);
-
-
 
   useEffect(() => {
     if (data) {
@@ -48,10 +43,7 @@ const Cart = ({ navigation }) => {
     );
   };
 
-
-
   // Total Cart State and Function Declarations
-
 
   const subtotal = useMemo(() => {
     return cartItems
@@ -63,9 +55,6 @@ const Cart = ({ navigation }) => {
       }, 0)
       .toFixed(2);
   }, [cartItems]);
-
-
-
 
   // -------------------------------------- //
   //      Check if User is Logged In        //
@@ -90,9 +79,6 @@ const Cart = ({ navigation }) => {
   useEffect(() => {
     checkUser();
   }, []);
-
-
-
 
   // -------------------------------------- //
   // Stripe Checkout Functions and States   //
@@ -142,9 +128,6 @@ const Cart = ({ navigation }) => {
       navigation.goBack();
     }
   };
-
-
-
 
   return (
     <View style={styles.pgContainer}>
@@ -206,7 +189,10 @@ const Cart = ({ navigation }) => {
                   ]}
                   ItemSeparatorComponent={() => (
                     <View
-                      style={[styles.separator, { marginTop: SIZES.xSmall * 0.1 }]}
+                      style={[
+                        styles.separator,
+                        { marginTop: SIZES.xSmall * 0.1 },
+                      ]}
                     />
                   )}
                   keyExtractor={(item) => item._id}
