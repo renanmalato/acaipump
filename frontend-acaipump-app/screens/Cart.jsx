@@ -4,37 +4,57 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
+  SafeAreaView,
 } from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
-import { SafeAreaView } from "react-native";
+import { Ionicons, Fontisto } from "@expo/vector-icons";
 import styles from "../constants/styles";
-import { Ionicons } from "@expo/vector-icons";
 import { SIZES, COLORS } from "../constants/index";
 import fetchCart from "../hook/fetchCart";
 import { Button, CartTile } from "../components";
 import { LogoSymbol } from "../assets/images/SVG/SvgIndex";
-import { Fontisto } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import WebView from "react-native-webview";
+
 
 const Cart = ({ navigation }) => {
   const { data, loading, error, refetch } = fetchCart();
   const [selected, setSelected] = useState(null);
   const [select, setSelect] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [deliveryFee, setDeliveryFee] = useState(10.0); 
+  const deliveryFee = 10.0;
   const [cartTotal, setCartTotal] = useState(0);
+
+
+  useEffect(() => {
+    const newTotalCart = parseFloat(subtotal) + deliveryFee;
+    setCartTotal(newTotalCart.toFixed(2));
+  }, [subtotal, deliveryFee]);
+
+
   const [cartItems, setCartItems] = useState([]);
+
+
 
   useEffect(() => {
     if (data) {
       setCartItems(data);
     }
   }, [data]);
+
+  const updateCartItem = (updatedItem) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
+    );
+  };
+
+
+
   // Total Cart State and Function Declarations
 
+
   const subtotal = useMemo(() => {
-    const calculatedSubtotal = cartItems
+    return cartItems
       .reduce((total, item) => {
         console.log(
           `Price: ${item.cartItem.price}, Quantity: ${item.quantity}`
@@ -42,22 +62,8 @@ const Cart = ({ navigation }) => {
         return total + item.cartItem.price * item.quantity;
       }, 0)
       .toFixed(2);
-    console.log(`Calculated Subtotal: ${calculatedSubtotal}`);
-    return calculatedSubtotal;
   }, [cartItems]);
 
-  useEffect(() => {
-    const newTotalCart = parseFloat(subtotal) + parseFloat(deliveryFee);
-    console.log(`New Cart Total: ${newTotalCart} (Subtotal: ${subtotal}, Delivery Fee: ${deliveryFee})`);
-    setCartTotal(newTotalCart.toFixed(2));
-  }, [subtotal, deliveryFee]);
-
-
-  const updateCartItem = (updatedItem) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => (item.id === updatedItem.id ? updatedItem : item))
-    );
-  };
 
 
 
@@ -71,13 +77,13 @@ const Cart = ({ navigation }) => {
 
       if (id !== null) {
         setIsLoggedIn(true);
-        console.log(isLoggedIn, "user Is Logged in");
+        console.log("User is logged in");
       } else {
         setIsLoggedIn(false);
-        console.log("user is NOT logged in");
+        console.log("User is NOT logged in");
       }
     } catch (error) {
-      console.log("Error checking user login Status", error);
+      console.log("Error checking user login status", error);
     }
   };
 
@@ -85,9 +91,13 @@ const Cart = ({ navigation }) => {
     checkUser();
   }, []);
 
+
+
+
   // -------------------------------------- //
   // Stripe Checkout Functions and States   //
   // -------------------------------------- //
+
   const [paymentUrl, setPaymentUrl] = useState(null);
 
   const createCheckOut = async () => {
@@ -103,33 +113,26 @@ const Cart = ({ navigation }) => {
         body: JSON.stringify({
           userId: JSON.parse(id),
           cartItems: cartItems.map((item) => ({
-            ...item.cartItem,
+            name: item.cartItem.title,
+            id: item.cartItem._id,
+            price: item.cartItem.price,
             cartQuantity: item.quantity,
           })),
         }),
       }
     );
-
-    if (response.ok) {
-      const { url } = await response.json();
-      setPaymentUrl(url);
-    } else {
-      const errorText = await response.text();
-      console.error("Error creating checkout session:", errorText);
-    }
+    const { url } = await response.json();
+    setPaymentUrl(url);
   };
 
-  
-
   const handleBuy = () => {
+    console.log("Is Logged In:", isLoggedIn);
     if (!isLoggedIn) {
       navigation.navigate("LoginPage");
     } else {
       createCheckOut();
     }
   };
-
-  // handle Navigation Change
 
   const onNavigationStateChange = (webViewState) => {
     const { url } = webViewState;
@@ -139,6 +142,8 @@ const Cart = ({ navigation }) => {
       navigation.goBack();
     }
   };
+
+
 
 
   return (
