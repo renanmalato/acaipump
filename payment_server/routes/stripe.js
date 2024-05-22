@@ -50,7 +50,7 @@ router.post("/create-checkout-session", async (req, res) => {
     quantity: 1,
   };
  
-  const line_items = req.body.cartItems.map((item) => {
+  const lineItems = req.body.cartItems.map((item) => {
     return {
       price_data: {
         currency: "usd",
