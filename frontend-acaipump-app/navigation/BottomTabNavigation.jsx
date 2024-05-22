@@ -40,7 +40,7 @@ const screenOptions = {
   },
 };
 
-const BottomTabNavigation = () => {
+const BottomTabNavigation = ({navigation}) => {
   return (
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen
@@ -95,6 +95,7 @@ const BottomTabNavigation = () => {
       <Tab.Screen
         name="Produtos"
         component={Products}
+        listeners={{tabPress: e => {e.preventDefault(); navigation.navigate('ProductsList')}}}
         options={{
           tabBarIcon: ({ focused }) => 
             (
@@ -121,6 +122,7 @@ const BottomTabNavigation = () => {
       <Tab.Screen
         name="Cart"
         component={Cart}
+        listeners={{tabPress: e => {e.preventDefault(); navigation.navigate('Cart')}}}
         options={{
           tabBarIcon: ({ focused }) => {
             return (

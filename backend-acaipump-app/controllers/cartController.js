@@ -48,7 +48,7 @@ module.exports = {
     getCart: async (req, res) => {
         try {
             const cart = await Cart.find({ userId: req.user.id})
-            .populate('products.cartItem', "_id title imageUrl price subtitle");
+            .populate('products.cartItem', "_id title imageUrl price subtitle unity");
 
             res.status(200).json(cart)
         } catch (err) {

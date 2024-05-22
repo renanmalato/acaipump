@@ -220,9 +220,23 @@ const styles = StyleSheet.create({
     ...SHADOWS.large,
     shadowColor: COLORS.primary,
   },
+
+  pcvtCardCartView:(backgroundColor) => ({
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: SIZES.small,
+    flexDirection: 'row',
+    paddingLeft: SIZES.medium,
+    paddingTop: SIZES.medium,
+    paddingBottom: SIZES.medium,
+    borderRadius: SIZES.small,
+    backgroundColor: backgroundColor,
+    ...SHADOWS.large,
+    shadowColor: COLORS.primary,
+  }),
   pcvtImage: {
     width: SIZES.large * 4,
-    backgroundColor: COLORS.secondary,
     justifyContent: 'center',
     alignContent: 'center',
   },
@@ -773,7 +787,7 @@ const styles = StyleSheet.create({
     top: SIZES.xLarge,
   },
   separator: {
-    height: SIZES.xSmall,
+    height: SIZES.xSmall * 0.1,
   },
   pgvCtaBtnRow: {
     justifyContent: "center",
@@ -1064,11 +1078,31 @@ const styles = StyleSheet.create({
     marginHorizontal: SIZES.large,
   },
 
+  cartTotalsCheckoutContainer: {
+    marginHorizontal: SIZES.large * 2,
+    marginTop: SIZES.large,
+    display: 'flex',
+    flexDirection: 'column',
+    height: 'auto'
+  },
+
+  cartTotalsCheckoutView: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: SIZES.large,
+  },
+
+  cartTotalsText: (fontFamily) => ({
+    fontFamily: fontFamily,
+    color: COLORS.gray,
+  }),
+
   // ----------------------- //
   //                         //
-  //    CartTile.JSX       //
+  //    CartTile.JSX         //
   //                         //
-  //    ct = cartTile     //
+  //    ct = cartTile        //
   //                         //
   // ----------------------- //
 
@@ -1139,6 +1173,55 @@ const styles = StyleSheet.create({
     fontFamily: 'regular',
     fontSize: SIZES.small,
     color: COLORS.black,
+  },
+
+
+  ctIncrementCartWrapper: {
+    flexDirection: "row",
+    backgroundColor: COLORS.lightWhite,
+
+    height: '129%',
+    width: SIZES.large *4.5,
+    paddingHorizontal: SIZES.large,
+    display: 'flex',
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomEndRadius: SIZES.small,
+    borderTopEndRadius: SIZES.small,
+  },
+  ctIncrementCartText: {
+    fontFamily: 'regular',
+    fontSize: SIZES.large * 0.8,
+  },
+
+
+  ctTrashIcon: {
+
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+    right: 0,
+    top: -SIZES.large *6,
+    backgroundColor: COLORS.lightWhite,
+    position: 'absolute',
+    paddingVertical: SIZES.small * 0.6,
+    paddingHorizontal: SIZES.small * 0.5,
+    borderRadius: SIZES.large,
+    
+    alignItems: 'center',
+    ...SHADOWS.large,
+    shadowColor: COLORS.black,
+    borderWidth: 0.5,
+    borderColor: COLORS.gray2,
+  },
+
+  ctTrashText: {
+    color: COLORS.red,
+    fontFamily: 'medium',
+    fontSize: SIZES.small * 0.8,
   },
 
 
@@ -1308,6 +1391,17 @@ const styles = StyleSheet.create({
     marginTop: SIZES.large * 1.1,
     marginBottom: marginBottom,
     zIndex: 999,
+  }),
+
+  lineDivTop: (marginTop) => ({ 
+    height: 1,
+    top:0,bottom:0,left:0,right:0,
+    backgroundColor: COLORS.gray2,
+    marginTop: marginTop,
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   }),
 
     centerView2: {
