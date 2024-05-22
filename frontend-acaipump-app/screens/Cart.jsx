@@ -294,6 +294,7 @@ const Cart = ({ navigation }) => {
                           />
                         </TouchableOpacity>
                       </View>
+
                     </>
                   }
                 />
