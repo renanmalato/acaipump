@@ -9,6 +9,7 @@ import Button from "./Button"
 import CartTile from "./cart/cartTile"
 import EmptyBottom from "./EmptyBottom"
 import SkeletonLoading from "./SkeletonLoading"
+import ClosedMessage from "./cart/closedMessage"
 
 export {
     Welcome,
@@ -21,5 +22,7 @@ export {
     Button,
     CartTile,
     EmptyBottom,
-    SkeletonLoading
+    SkeletonLoading,
+    ClosedMessage,
+   
 }

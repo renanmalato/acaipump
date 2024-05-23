@@ -16,13 +16,12 @@ const AddToCart = async (productId, quantity) => {
       Authorization: `Bearer ${JSON.parse(token)}`,
     };
 
-    const response = await axios.post(endpoint, data, { headers });
+    await axios.post(endpoint, data, { headers });
 
     // Fetch the updated cart data
-    const updatedCart = await fetchCart();
+    const { refetch } = useFetchCart();
+    await refetch();
 
-    // Return the updated cart data
-    return updatedCart.data;
   } catch (error) {
     console.log(error.message);
     throw new Error(error.message);

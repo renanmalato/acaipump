@@ -778,6 +778,7 @@ const styles = StyleSheet.create({
     flex: 0,
     marginBottom: -SIZES.large * 2,
     backgroundColor: COLORS.white,
+
   },
   pgvColumnWrapper: {
     justifyContent: "space-between",
@@ -1098,6 +1099,284 @@ const styles = StyleSheet.create({
     color: COLORS.gray,
   }),
 
+
+      // Empty States inside Cart
+
+
+      cartEmptyStateView: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: SIZES.large * 1.3,
+        marginHorizontal: SIZES.large * 1.2,
+      },
+
+      cartEmptyStateTextImageRow: {
+        flexDirection: 'row',
+        marginHorizontal: SIZES.large * 2,
+        marginTop: SIZES.medium
+      },
+      
+      cartEmptyStateImage: {
+        resizeMode: 'cover',
+        width: SIZES.large * 4.5,
+        height: SIZES.large * 4.5,
+        marginTop: -SIZES.large,
+        right: -SIZES.small,
+      },
+
+      cartEmptyStateTextView: {
+        width: SIZES.large * 8
+      },
+
+      cartCalendarTextView: {
+        width: '100%'
+      },
+    
+      cartEmptyStateText: {
+        fontFamily: "regular",
+        fontSize: SIZES.small,
+        color: COLORS.gray,
+      },
+    
+      cartEmptyStateButtonView: {
+        justifyContent: "center",
+        bottom: 0,
+        ...Platform.select({
+          ios: {
+            height: SIZES.xxLarge * 2.2,
+          },
+          android: {
+            bottom: SIZES.xSmall / 10,
+            height: SIZES.xxLarge * 1.6,
+          },
+        }),
+        width: '120%',
+        marginTop: SIZES.large,
+      }, 
+      
+      cartEmptyStateCtaBtn: {
+        backgroundColor: COLORS.white,
+        marginHorizontal: SIZES.xLarge,
+        height: SIZES.xxLarge * 1.8,
+        borderRadius: SIZES.xSmall,
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: COLORS.primary3,
+      },
+      cartCtaBtnText: {
+        color: COLORS.primary3,
+        fontFamily: "semibold",
+        fontSize: SIZES.small,
+      },
+
+      // Modal
+      cartCalendarDatePicker: {
+        backgroundColor: COLORS.primary,
+      },
+
+      cartModalCenteredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        ...SHADOWS.large,
+        shadowColor: COLORS.black,
+        shadowOpacity: 1,
+        shadowRadius: 100,
+      },
+      cartModalInnerView: {
+        backgroundColor: COLORS.lightWhite,
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        ...SHADOWS.large,
+        shadowColor: COLORS.gray,
+        shadowOpacity: 1,
+        shadowRadius: 200,
+        elevation: 5,
+        marginHorizontal: SIZES.large,
+        width: SIZES.width * 0.9,
+      },
+
+      
+      cartCalendarButtonView: {
+        justifyContent: "center",
+        bottom: 0,
+        ...Platform.select({
+          ios: {
+            height: SIZES.xxLarge * 2.2,
+          },
+          android: {
+            bottom: SIZES.xSmall / 10,
+            height: SIZES.xxLarge * 1.6,
+          },
+        }),
+        width: '120%',
+        marginTop: SIZES.large,
+      }, 
+      
+      cartCalendarBtn: {
+        backgroundColor: COLORS.primary,
+        marginHorizontal: SIZES.xLarge,
+        height: SIZES.xxLarge * 1.8,
+        borderRadius: SIZES.xSmall,
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 1,
+        borderColor: COLORS.primary3,
+      },
+      cartCalendarBtnText: {
+        color: COLORS.white,
+        fontFamily: "semibold",
+        fontSize: SIZES.small,
+      },
+      cartCalendarIcon: {
+        position: 'absolute',
+        right: - SIZES.small * 0.3,
+        backgroundColor: COLORS.white,
+        padding: SIZES.small * 1.1,
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        borderEndEndRadius: SIZES.small,
+        borderTopEndRadius: SIZES.small,
+      },
+      cartRenderDeliverySchedule: {
+        display: 'flex',
+        width: '100%', 
+        marginBottom: SIZES.large * 3,
+      },
+
+      cartCalendarTimeView: {
+        display: 'flex',
+        flexDirection: 'row',
+      },
+      cartCalendarHourButton: {
+        backgroundColor: COLORS.lightWhite,
+        padding: SIZES.small,
+        borderRadius: SIZES.large,
+        borderWidth: 1,
+        borderColor: COLORS.gray,
+        marginHorizontal: SIZES.small,
+      },
+
+      cartCalendarHourButtonSelected: {
+        backgroundColor: COLORS.secondary4,
+        borderColor: COLORS.primary,
+        ...SHADOWS.medium,
+        shadowColor: 'blue',
+        shadowRadius: SIZES.xSmall,
+      },
+
+      cartCalendarHourButtonText: {
+        fontFamily: 'regular,',
+        fontSize: SIZES.small,
+        color: COLORS.gray,
+      },
+
+      cartCalendarConfirmButton: {
+        marginTop: SIZES.large,
+        backgroundColor: COLORS.white,
+        padding: SIZES.small,
+        width: '100%',
+        borderRadius: SIZES.large,
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        marginHorizontal: SIZES.small,
+      },
+
+      cartCalendarConfirmButtonText: {
+        fontFamily: 'semibold',
+        fontSize: SIZES.small,
+        color: COLORS.primary,
+        textAlign: 'center',
+      },
+
+      cartCalendarCloseButton: {
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        width: '100%',
+        borderRadius: SIZES.large,
+        marginHorizontal: SIZES.small,
+      },
+
+      cartCalendarCloseButtonText: {
+        fontFamily: 'semibold',
+        fontSize: SIZES.small,
+        color: COLORS.white,
+        textAlign: 'center',
+      },
+      
+      
+      // Checkout Bottom
+
+      cartCheckoutBottomContainer: {
+        paddingTop: SIZES.small,
+        backgroundColor: COLORS.lightWhite,
+        ...SHADOWS.large,
+        shadowColor: COLORS.primary,
+        shadowOffset: {
+          width: 0,
+          height: -10,
+        }
+      },
+
+      cartCheckoutBottomView: {
+        marginRight: SIZES.large,
+        marginLeft: SIZES.small,
+        backgroundColor: COLORS.lightWhite,
+      },
+
+      cartCheckoutBottomRow: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginHorizontal: SIZES.large,
+        marginBottom: SIZES.large,
+      },
+
+      cartCheckoutRenderPriceColumn: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+      },
+
+      cartCheckoutRenderPriceText: {
+        fontFamily: 'semibold',
+        fontSize: SIZES.small * 1.5,
+        color: COLORS.black,
+      },
+
+      cartCheckoutButtonView:{
+        justifyContent: 'center',
+        backgroundColor: COLORS.primary,
+        marginHorizontal: SIZES.xLarge,
+        height: SIZES.xxLarge * 1.5,
+        borderRadius: SIZES.xSmall,
+        justifyContent: "center",
+        alignItems: "center",
+        width: SIZES.large * 9,      
+      },
+
+      cartCheckoutButtonWrapper: {
+        display:  'flex',
+        flexDirection: 'row',
+        alignContent: 'center',
+      },
+
+      cartCheckoutButtonText: {
+        color: COLORS.lightWhite,
+        fontFamily: "semibold",
+        fontSize: SIZES.medium,
+        paddingHorizontal: SIZES.large,
+      },
+
+      
+      
+      
+
+
+
   // ----------------------- //
   //                         //
   //    CartTile.JSX         //
@@ -1347,7 +1626,7 @@ const styles = StyleSheet.create({
   
   emptyStateImage: {
     resizeMode: 'contain',
-    width: 300,
+    width: SIZES.large * 12,
     marginTop: -SIZES.large * 3,
   },
 
