@@ -24,7 +24,7 @@ const ProductsRow = () => {
         }
         horizontal
         contentContainerStyle={{
-            columnGap: SIZES.large,
+            columnGap: SIZES.medium,
             marginLeft: SIZES.medium,
             paddingRight: SIZES.xxLarge,
         }}

@@ -16,10 +16,10 @@ import { useRoute } from "@react-navigation/native";
 
 import Hypher from "hypher";
 import english from "hyphenation.en-us";
-import { CtaButton } from "../components";
+import { CtaButton, EmptyBottom } from "../components";
 import AddToCart from "../hook/addToCart";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import WebView from 'react-native-webview';
+import WebView from "react-native-webview";
 
 const h = new Hypher(english);
 /* <Text style={styles.pdDescriptionText}>
@@ -65,7 +65,7 @@ const ProductDetails = ({ navigation }) => {
 
   const createCheckOut = async () => {
     const id = await AsyncStorage.getItem("id");
-    
+
     const response = await fetch(
       "https://acaipump-production.up.railway.app/stripe/create-checkout-session",
       {
@@ -94,7 +94,7 @@ const ProductDetails = ({ navigation }) => {
     const { url } = webViewState;
 
     if (url && url.includes("checkout-success")) {
-       navigation.navigate("Orders")
+      navigation.navigate("Orders");
     } else if (url && url.includes("cancel")) {
       navigation.goBack();
     }
@@ -182,13 +182,11 @@ const ProductDetails = ({ navigation }) => {
     <>
       <View style={styles.pdContainer}>
         {paymentUrl ? (
-          <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
-
-          <WebView 
-            source={{uri: paymentUrl}}
-            onNavigationStateChange={onNavigationStateChange} 
-          />
-
+          <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+            <WebView
+              source={{ uri: paymentUrl }}
+              onNavigationStateChange={onNavigationStateChange}
+            />
           </SafeAreaView>
         ) : (
           <View style={styles.pdContainer}>
@@ -217,65 +215,91 @@ const ProductDetails = ({ navigation }) => {
             {/* --------- */}
             {/*   Image   */}
             {/* --------- */}
+            <ScrollView style={{ zIndex: -1 }}>
+              <View style={styles.pdImageContainer}>
+                <Image source={{ uri: item.imageUrl }} style={styles.pdImage} />
 
-            <View style={styles.pdImageContainer}>
-              <Image source={{ uri: item.imageUrl }} style={styles.pdImage} />
+                {/* --------- */}
+                {/*   Title   */}
+                {/* --------- */}
 
-              {/* --------- */}
-              {/*   Title   */}
-              {/* --------- */}
-
-              <View style={styles.pdDetails}>
-                <View style={styles.pdTitleRow}>
-                  <Text style={styles.pdTitle} numberOfLines={2}>
-                    {item.title}{" "}
-                    <Text style={styles.pdSubTitle}>
-                      {" "}
-                      {"\n"}
-                      {item.subtitle}
-                      <Text style={styles.pdSize}> {item.size}</Text>
+                <View style={styles.pdDetails}>
+                  <View style={styles.pdTitleRow}>
+                    <Text style={styles.pdTitle} numberOfLines={2}>
+                      {item.title}{" "}
+                      <Text style={styles.pdSubTitle}>
+                        {" "}
+                        {"\n"}
+                        {item.subtitle}
+                        <Text style={styles.pdSize}> {item.size}</Text>
+                      </Text>
                     </Text>
-                  </Text>
-                  <View style={styles.pdPriceWrapper}>
-                    <Text style={styles.pdCurrencySign}>R$ </Text>
-                    <Text style={styles.pdPriceInteger}>{item.price}</Text>
-                    <Text style={styles.pdPriceDecimals}> </Text>
+
+                    <View style={styles.pdPriceAndUnityWrapper}>
+                      <View style={styles.pdPriceWrapper}>
+                        <Text style={styles.pdCurrencySign}>R$ </Text>
+                        <Text style={styles.pdPriceInteger}>{item.price}</Text>
+                        <Text style={styles.pdPriceDecimals}> </Text>
+                      </View>
+
+                      <View style={styles.pdUnityView}>
+                        <Text style={styles.pdUnity}>
+                          {item.unity} {item.unity > 1 ? "unidades" : "unidade"}
+                        </Text>
+                      </View>
+                    </View>
                   </View>
                 </View>
-              </View>
 
-              {/* ----------------------- */}
-              {/*   Rating and Add Cart   */}
-              {/* ----------------------- */}
+                {/* -------------------------------- */}
+                {/*   Rating and How many you Want   */}
+                {/* -------------------------------- */}
+                <View style={styles.lineDiv(-SIZES.small)} />
 
-              <View style={styles.pdRatingRow}>
-                <View style={styles.pdRating}>
-                  {[1, 2, 3, 4, 5].map((index) => (
-                    <Ionicons
-                      name="star"
-                      key={index}
-                      size={SIZES.large * 0.8}
-                      color="gold"
-                    />
-                  ))}
-                  <Text style={styles.pdRatingText}>(4.9)</Text>
+                <View style={styles.pdRatingRow}>
+                  <View style={styles.pdHowManyView}>
+                    <Text style={styles.pdHowManyText}>Quantos você quer?</Text>
+                  </View>
                 </View>
 
-                <View style={styles.pdRating}>
-                  <TouchableOpacity onPress={() => increment()}>
-                    <Ionicons name="add-circle-outline" size={SIZES.large} />
-                  </TouchableOpacity>
+                {/* ----------------------- */}
+                {/*   Add to Cart Row       */}
+                {/* ----------------------- */}
 
-                  <Text style={styles.pdRatingText}> {count} </Text>
+                <View style={styles.pdAddToCartRowWrapper}>
+                  <View style={styles.pdIncrementCartWrapper}>
+                    <TouchableOpacity onPress={() => increment()}>
+                      <Ionicons
+                        name="add-circle"
+                        size={SIZES.large * 1.2}
+                        color={COLORS.gray2}
+                      />
+                    </TouchableOpacity>
 
-                  <TouchableOpacity onPress={() => decrement()}>
-                    <Ionicons name="remove-circle-outline" size={SIZES.large} />
+                    <Text style={styles.pdIncrementCartText}> {count} </Text>
+
+                    <TouchableOpacity onPress={() => decrement()}>
+                      <Ionicons
+                        name="remove-circle"
+                        size={SIZES.large * 1.2}
+                        color={COLORS.gray2}
+                      />
+                    </TouchableOpacity>
+                  </View>
+
+                  <TouchableOpacity onPress={() => handleCart()}>
+                    <View style={styles.pdAddToCartButtonView}>
+                      <Text style={styles.pdAddToCartButtonText}>
+                        + Adicionar à Sacola
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
-              </View>
-            </View>
 
-            <ScrollView style={{ zIndex: -1 }}>
+                <View style={[styles.lineDiv(1), { marginTop: -1 }]} />
+                {/* closing view */}
+              </View>
+
               {/* --------------- */}
               {/*   Description   */}
               {/* --------------- */}
@@ -291,24 +315,20 @@ const ProductDetails = ({ navigation }) => {
 
               <View style={styles.pdDeliveryRow}>
                 <View style={styles.pdLocationWrapper}>
-                  <View style={styles.pdLocation}>
-                    <Ionicons name="location-outline" size={SIZES.large} />
-                  </View>
+                  
                   <View>
-                    <Text style={styles.pdLocationText}> Dallas</Text>
-                  </View>
-                </View>
-
-                <View style={styles.pdLocationWrapper}>
-                  <View style={styles.pdLocation}>
                     <MaterialCommunityIcons
-                      name="truck-outline"
+                      name="motorbike"
                       size={SIZES.large}
                     />
-                  </View>
+                    </View>
+
                   <View>
-                    <Text style={styles.pdLocationText}> Free Delivery </Text>
+                    <Text style={styles.pdLocationText}>
+                    {"    "}Entregas: Região Metropolitana de Belém{" "}
+                    </Text>
                   </View>
+                  
                 </View>
               </View>
 
@@ -354,6 +374,7 @@ const ProductDetails = ({ navigation }) => {
                   </Text>
                 </View>
               </View>
+              <EmptyBottom />
             </ScrollView>
 
             {/* --------------- */}
@@ -365,7 +386,7 @@ const ProductDetails = ({ navigation }) => {
                 style={styles.pdCtaBtn}
                 onPress={() => handleBuy()}
               >
-                <Text style={styles.pdCtaBtnText}>Pedir Açaí</Text>
+                <Text style={styles.pdCtaBtnText}>Revisar e Pedir Açaí</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
